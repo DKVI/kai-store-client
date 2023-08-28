@@ -1,4 +1,4 @@
-import instance from "./index";
+import { instance } from "./index";
 const getSlide = async () => {
   try {
     const res = await instance.get("/newfeed");

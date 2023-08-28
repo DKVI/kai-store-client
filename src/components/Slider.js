@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { IconNext, IconPrev } from "../assets/icon";
+import * as icon from "../assets/icon";
 import * as api from "../api/apiFunction";
 function Slider({ data }) {
   let slideList;
@@ -65,7 +65,7 @@ function Slider({ data }) {
           transform: "translateY(-50%)",
         }}
       >
-        <IconNext />
+        <icon.FaRegArrowAltCircleRight color="white" size={40} />
       </div>
       <div
         className="prev absolute left-0 top-1/2 z-10 opacity-50 hover:opacity-100 transition-opacity"
@@ -73,7 +73,7 @@ function Slider({ data }) {
           transform: "translateY(-50%)",
         }}
       >
-        <IconPrev />
+        <icon.FaRegArrowAltCircleLeft color="white" size={40} />
       </div>
       <div
         className="slide-container w-full h-full flex absolute left-0 top-0 "

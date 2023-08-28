@@ -4,18 +4,25 @@ import * as icon from "../../assets/icon";
 import { useState } from "react";
 function Header() {
   const [showCategory, setShowCategory] = useState(false);
-
+  const [showType, setShowType] = useState(false);
   function showCategoryList() {
     setShowCategory(!showCategory);
   }
 
+  function showTypeList() {
+    setShowType(!showType);
+  }
   return (
-    <div className="w-full h-16 bg-black flex px-20">
+    <div className="w-full h-16 fixed left-0 top-0 right-0 bg-black flex px-20 z-20">
       <div className="w-1/3 flex">
         <Link className="w-3/5  h-full flex" to="/">
           <img src={logo} alt="logo" className="h-full" />
         </Link>
-        <div className="w-1/5  h-full flex items-center ">
+        <div
+          className="w-1/5  h-full flex items-center relative"
+          onMouseEnter={showCategoryList}
+          onMouseLeave={showCategoryList}
+        >
           <Link
             to="/danh-muc"
             className="text-white items-center w-full flex justify-start font font-bold text-xs"
@@ -25,11 +32,26 @@ function Header() {
           >
             Danh mục
           </Link>
+          {showCategory && (
+            <div
+              className="w-full absolute bg-black text-white top-[100%] left-0 z-20 flex flex-col"
+              style={{
+                fontFamily: "Times New Roman, serif",
+              }}
+            >
+              <Link className="p-2 text-[12px] hover:bg-white hover:text-black transition-all w-full">
+                Quần Áo
+              </Link>
+              <Link className="p-2 text-[12px] hover:bg-white hover:text-black transition-all w-full">
+                Phụ Kiện
+              </Link>
+            </div>
+          )}
         </div>
         <div
           className="w-1/5  h-full flex items-center relative"
-          onMouseEnter={showCategoryList}
-          onMouseLeave={showCategoryList}
+          onMouseEnter={showTypeList}
+          onMouseLeave={showTypeList}
         >
           <Link
             to="/san-pham"
@@ -40,7 +62,7 @@ function Header() {
           >
             Sản phẩm
           </Link>
-          {showCategory && (
+          {showType && (
             <div
               className="w-full absolute bg-black text-white top-[100%] left-0 z-20 flex flex-col"
               style={{
@@ -80,7 +102,7 @@ function Header() {
                   className="w-full h-full bg-transparent outline-none"
                 />
                 <div className="absolute right-0 top-[50%] translate-y-[-50%] bg-black rounded-[50%]">
-                  <icon.IconSearch />
+                  <icon.IoSearchCircleOutline size={20} color="white" />
                 </div>
               </div>
             </div>
@@ -88,12 +110,12 @@ function Header() {
         </div>
         <div className="w-[10%] h-full flex">
           <Link to="/cart" className="m-auto">
-            <icon.IconCart />
+            <icon.AiOutlineShoppingCart size={20} color="white" />
           </Link>
         </div>
         <div className="w-[10%] h-full flex">
           <Link to="/me" className="m-auto">
-            <icon.IconUser />
+            <icon.FaRegUserCircle size={20} color="white" />
           </Link>
         </div>
       </div>
