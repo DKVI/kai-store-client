@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import * as icon from "../assets/icon";
-import * as api from "../api/apiFunction";
 function Slider({ data }) {
-  let slideList;
   let autoChange;
   useEffect(() => {
     if (data?.newfeed) {
@@ -18,7 +16,6 @@ function Slider({ data }) {
   }, [data]);
 
   function handleSlider(slideList) {
-    console.log(slideList);
     const next = document.querySelector(".next");
     const prev = document.querySelector(".prev");
     const slides = document.querySelector(".slide-container");
@@ -29,14 +26,12 @@ function Slider({ data }) {
     });
     slides.innerHTML = html.join("");
     const slidesLength = slideList.length;
-    console.log(slidesLength);
     slides.style.width = `${slidesLength * 100}%`;
     function nextSlide() {
       if (index > slidesLength - 1) {
         index = 0;
       }
       let pos = index * 100;
-      console.log(pos);
       slides.style.left = `-${pos}%`;
     }
 
@@ -45,7 +40,6 @@ function Slider({ data }) {
         index = slidesLength - 1;
       }
       let pos = -(index * 100);
-      console.log(pos);
       slides.style.left = `${pos}%`;
     }
     next.onclick = () => {
@@ -60,7 +54,7 @@ function Slider({ data }) {
   return (
     <div className="w-full h-full relative overflow-hidden">
       <div
-        className="next absolute right-0 top-1/2 z-10 opacity-50 hover:opacity-100 transition-opacity"
+        className="next absolute right-0 top-1/2 z-10 opacity-50 drop-shadow-lg hover:opacity-100 transition-opacity"
         style={{
           transform: "translateY(-50%)",
         }}
@@ -68,7 +62,7 @@ function Slider({ data }) {
         <icon.FaRegArrowAltCircleRight color="white" size={40} />
       </div>
       <div
-        className="prev absolute left-0 top-1/2 z-10 opacity-50 hover:opacity-100 transition-opacity"
+        className="prev absolute left-0 top-1/2 z-10 drop-shadow-lg opacity-50 hover:opacity-100 transition-opacity"
         style={{
           transform: "translateY(-50%)",
         }}

@@ -8,4 +8,13 @@ const getSlide = async () => {
   }
 };
 
-export { getSlide };
+const getProduct = async (limits) => {
+  try {
+    const res = await instance.get(`/products/limits/${limits}`);
+    return res;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export { getSlide, getProduct };
